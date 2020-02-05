@@ -7,5 +7,3 @@ CREATE TABLE users (
   procesado BOOLEAN NOT NULL
 );
  
-INSERT INTO users (nombre, apellido, procesado) VALUES
-  ('julian', 'corredor', false)

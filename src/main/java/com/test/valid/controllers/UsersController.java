@@ -15,7 +15,14 @@ import com.test.valid.repositories.UsersRepository;
 @RequestMapping("/users")
 @RestController
 public class UsersController {
-	
+
+
+	//TODO
+	// Implementar Capa de negocio
+	// Implementar Trasas para seguimiento
+	// Implementar seguridad -Datos en transito encriptados AES256-- para capa red SSL
+	// Covertura >85 implementar pruebas unitarias
+
 	private UsersRepository userRepository;
 
 	
@@ -45,12 +52,18 @@ public class UsersController {
 
 	@CrossOrigin("*")
 	@PutMapping(value = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE )
-	public List<Users> putUsers(@PathVariable("id") List id , @RequestBody Users body ){
+	public Users putUsers(@PathVariable("id") long id , @RequestBody Users body ){
 		log.info("Begins putUsers");
-		List<Users> user =userRepository.findAllById(id).orElseThrow(
+		Users user =userRepository.findById(id).orElseThrow(
 				IllegalArgumentException::new);
-		//Users usersList =userRepository.save(user);
-		return user;
+
+
+		user.setProcesado(true);
+		user.setNombre(body.getNombre());
+		user.setApellido(body.getApellido());
+
+		Users usersList =userRepository.save(user);
+		return usersList;
 	}
 
 }
