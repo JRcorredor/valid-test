@@ -12,10 +12,10 @@ import java.util.Optional;
 public interface BaseRepository <T , ID extends Serializable> extends Repository<T,ID> {
 
 
-
+// se agregan lo metodos que se van a usar , no metodos innecesarios
     List<T> findAll();
 
-    List<T> findAllById(List<ID> ids);
+    Optional<T> findById(ID id);
 
      T save(T persisted) ;
 
